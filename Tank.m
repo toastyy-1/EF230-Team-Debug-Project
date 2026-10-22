@@ -1,7 +1,7 @@
 % tank class
 classdef Tank < handle
     properties
-        % position of the tank in 2d space
+        % position of the tank in the 2d side view cs
         r (1,2) double = [0 0]
 
         % tank mass
@@ -23,9 +23,6 @@ classdef Tank < handle
         cannonOrientation (1,1) double = 0
 
     end
-    properties (Constant)
-        g = 9.80665;
-    end
 
     methods
         function obj = Tank(pos)
@@ -35,11 +32,27 @@ classdef Tank < handle
             obj.r = pos;
         end
 
-        function update(dt)
-            obj.v = obj.v + obj.a * dt;
+        function update(obj, dt, ground_height)
+            % update kiniematics
+            obj.v = obj.v + (obj.a + [0 -9.81]) * dt;
             obj.r = obj.r + obj.v * dt;
+
+            % ground collission
+            if obj.r(2) <= ground_height
+                obj.r(2) = ground_height;
+                obj.v(2) = max(obj.v(2), 0);
+            end
+
+            % update attitude
             obj.w = obj.w;
             obj.att = obj.att + obj.w * dt;
+        end
+
+        function pos = get_pos(obj)
+            pos = obj.r;
+        end
+        function vel = get_vel(obj)
+            vel = obj.v;
         end
 
     end
