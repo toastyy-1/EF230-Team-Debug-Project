@@ -29,7 +29,7 @@ classdef Renderer < handle
             ylim(obj.ax, [-20, 60]);
 
             % terrain
-            plot(obj.ax, terrain_map(:,1), terrain_map(:,2), 'k-', 'LineWidth', 2);
+            plot(obj.ax, terrain_map(:,1), terrain_map(:,2), 'g-', 'LineWidth', 2);
 
             % tank markers
             colors = lines(numel(tanks));
