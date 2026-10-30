@@ -11,10 +11,10 @@ time = 0;
 terrain_map = generate_terrain();
 
 % create player tank
-player = Tank([-20, 80]);
+player = Tank([-80, 80]);
 
 % create enemy tank
-enemy = Tank([0, 80]);
+enemy = Tank([80, 80]);
 
 % all tanks in the sim
 tanks = [player, enemy];
@@ -81,7 +81,7 @@ function terrain_map = generate_terrain()
     D = 0.9;
     freq_ratio = 1.5;
     w0 = 0.09;
-    amp = 3.5;
+    amp = 5;
     n = (0:9)';
     phi = 2 * pi * rand(numel(n), 1);
     height = amp * sum(freq_ratio.^((D - 2) * n) .* cos(w0 * freq_ratio.^n * x + phi), 1);

@@ -37,7 +37,7 @@ classdef Tank < handle
 
         function update(obj, dt, ground_height)
             % update kiniematics
-            obj.v = obj.v + (obj.a + [0 -9.81]) * dt;
+            obj.v = obj.v + (obj.a + [0, -9.81]) * dt;
             obj.r = obj.r + obj.v * dt;
 
             % ground collission
