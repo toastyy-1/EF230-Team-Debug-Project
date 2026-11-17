@@ -7,6 +7,10 @@ classdef Tank < handle
         % tank mass
         m;
 
+        % tank health
+        health (1,1) double = 100;
+
+
         % tank velocity in 2D space
         v (1,2) double = [0, 0];
 
@@ -28,6 +32,14 @@ classdef Tank < handle
     end
 
     methods
+        function take_damage(obj, amount)
+            obj.health = max(0, obj.health - amount);
+        end
+
+        function hp = get_health(obj)
+            hp = obj.health;
+        end
+
         function obj = Tank(pos)
             arguments
                 pos (1,2) double
