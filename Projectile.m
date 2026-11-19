@@ -35,7 +35,7 @@ classdef Projectile < handle
             obj.v = obj.v + ([0, -9.81]) * dt;
             obj.r = obj.r + obj.v * dt;
 
-            % ground collission
+            % ground collision
             if obj.r(2) <= ground_height
                 obj.r(2) = ground_height;
                 obj.v(2) = max(obj.v(2), 0);
